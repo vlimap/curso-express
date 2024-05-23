@@ -1,0 +1,38 @@
+### Listar todos os usuarios
+
+GET http://localhost:3000/api/usuarios
+Accept: application/json
+
+###
+
+### Cadastrar usuarios
+
+POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+
+{
+    "nome": "Adriele",
+    "email": "adriele@email.com",
+    "status": "ativo"
+}
+
+
+###
+
+### Editar usuario
+
+PUT http://localhost:3000/api/usuarios/4
+Content-Type: application/json
+
+{
+    "nome": "Adriele",
+    "email": "adriele@email.com",
+    "status": "ativo"
+}
+
+###
+DELETE  http://localhost:3000/api/usuarios/4
+Accept: application/json
+
+###
