@@ -1,38 +1,98 @@
-### Listar todos os usuarios
+### Listar todos os usuários
 
 GET http://localhost:3000/api/usuarios
 Accept: application/json
 
-###
-
-### Cadastrar usuarios
+### Cadastrar usuários
 
 POST http://localhost:3000/api/usuarios
 Content-Type: application/json
 
-
 {
-    "nome": "Adriele",
-    "email": "adriele@email.com",
-    "status": "ativo"
+    "nome": "JUAO",
+    "email": "JUAO@email.com",
+    "status": "ativo",
+    "telefone": "849999999",
+    "cpf": "12345678998",
+    "endereco":"rua tal de fulano",
+    "senha": "321"
 }
-
 
 ###
 
-### Editar usuario
-
-PUT http://localhost:3000/api/usuarios/4
+POST http://localhost:3000/api/usuarios
 Content-Type: application/json
 
 {
-    "nome": "Adriele",
-    "email": "adriele@email.com",
-    "status": "ativo"
+    "nome": "Maria",
+    "email": "maria@email.com",
+    "status": "ativo",
+    "telefone": "849888888",
+    "cpf": "98765432100",
+    "endereco":"rua tal de ciclana",
+    "senha": "456"
 }
 
 ###
-DELETE  http://localhost:3000/api/usuarios/4
-Accept: application/json
+
+POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+    "nome": "José",
+    "email": "jose@email.com",
+    "status": "ativo",
+    "telefone": "849777777",
+    "cpf": "11122233344",
+    "endereco":"rua tal de beltrano",
+    "senha": "789"
+}
+
+### Retornar usuario especifico
+
+GET http://localhost:3000/api/usuarios/3
+Content-Type: application/json
+
+{
+    "nome": "Ana",
+    "email": "ana@email.com",
+    "status": "ativo",
+    "telefone": "849666666",
+    "cpf": "22233344455",
+    "endereco":"rua tal de mendonça",
+    "senha": "012"
+}
 
 ###
+
+POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+    "nome": "Pedro",
+    "email": "pedro@email.com",
+    "status": "ativo",
+    "telefone": "849555555",
+    "cpf": "33344455566",
+    "endereco":"rua tal de almeida",
+    "senha": "345"
+}
+
+### Editar usuário
+
+PUT http://localhost:3000/api/usuarios/3
+Content-Type: application/json
+
+{
+    "nome": "JUAO FRANÇA",
+    "email": "JUAO@email.com",
+    "status": "ativo",
+    "telefone": "849999999",
+    "cpf": "12345678998",
+    "endereco":"rua tal de fulano",
+    "senha": "321"
+}
+### Deletar usuário
+
+DELETE  http://localhost:3000/api/usuarios/2
+Accept: application/json

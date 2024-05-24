@@ -32,12 +32,12 @@ exports.listarUsuario = (req, res) => {
 
 // Função para cadastrar um novo usuário
 exports.cadastrarUsuario = (req, res) => {
-    const { nome, email, status } = req.body; // Extrai os dados do corpo da requisição
-    if (!nome || !email || !status) {
+    const { nome, email, status, telefone, cpf, endereco, senha , foto_url } = req.body; // Extrai os dados do corpo da requisição
+    if (!nome || !email || !status || !cpf || !senha) {
         // Se algum campo obrigatório estiver faltando, responde com status 400 (Requisição Inválida) e uma mensagem de erro
         return res.status(400).json({ mensagem: 'Todos os campos são obrigatórios.' });
     }
-    Usuario.create({ nome, email, status }, (err, usuario) => {
+    Usuario.create({ nome, email, status, telefone, cpf, endereco, senha , foto_url }, (err, usuario) => {
         if (err) {
             // Se houver um erro, responde com status 500 (Erro Interno do Servidor) e uma mensagem de erro
             res.status(500).json({ mensagem: 'Erro ao cadastrar usuario', erro: err.message });
@@ -51,12 +51,12 @@ exports.cadastrarUsuario = (req, res) => {
 // Função para atualizar um usuário existente pelo ID
 exports.atualizarUsuario = (req, res) => {
     const { id } = req.params; // Extrai o ID dos parâmetros da requisição
-    const { nome, email, status } = req.body; // Extrai os dados do corpo da requisição
-    if (!nome || !email || !status) {
+    const { nome, email, status, telefone, cpf, endereco, senha , foto_url } = req.body; // Extrai os dados do corpo da requisição
+    if (!nome || !email || !status || !cpf || !senha) {
         // Se algum campo obrigatório estiver faltando, responde com status 400 (Requisição Inválida) e uma mensagem de erro
         return res.status(400).json({ mensagem: 'Todos os campos são obrigatórios.' });
     }
-    Usuario.atualizarPorId(id, { nome, email, status }, (err, usuario) => {
+    Usuario.atualizarPorId(id, { nome, email, status, telefone, cpf, endereco, senha, foto_url }, (err, usuario) => {
         if (err) {
             // Se houver um erro, responde com status 500 (Erro Interno do Servidor) e uma mensagem de erro
             res.status(500).json({ mensagem: 'Erro ao atualizar usuario', erro: err.message });
