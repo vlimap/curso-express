@@ -1,0 +1,39 @@
+### Listar todos os usuarios
+
+GET http://localhost:8080/api/usuario
+Accept: application/json
+
+###
+
+### Cadastrar novo usuario
+
+POST http://localhost:8080/api/usuario
+Content-Type: application/json
+
+{
+      "id": 2,
+      "nome": "teste 2",
+      "cargo": "teste 2"
+}
+
+###
+
+### Deletar usuario
+
+DELETE  http://localhost:8080/api/usuario/1
+Accept: application/json
+
+###
+
+### Editando usuario
+
+PUT  http://localhost:8080/api/usuario/2
+Content-Type: application/json
+
+{
+      "id": 2,
+      "nome": "teste 9",
+      "cargo": "teste 9"
+}
+
+###
