@@ -1,12 +1,4 @@
 
-const dados = 
-[
-    {
-        "id": 1,
-        "nome":"Valtemir",
-        "cargo": "instrutor"
-    }
-]
 
 exports.mostrarUsuaurios = ( (requisicao, resposta) => {
     resposta.json(dados);

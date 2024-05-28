@@ -7,6 +7,7 @@ rota.use(express.json());
 // rota para mostrar usuarios
 rota.get('/usuario', controller.mostrarUsuaurios)
 
+
 // rota para mostrar usuario por id
 rota.get('/usuario/:id', controller.buscarPorId)
 
