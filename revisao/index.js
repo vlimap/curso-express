@@ -3,6 +3,7 @@ const app = express();
 const sequelize = require('./configBD');
 const rota = require('./routes');
 
+
 app.use('/api', rota);
 
 

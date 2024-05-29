@@ -11,16 +11,21 @@ POST http://localhost:8080/api/usuario
 Content-Type: application/json
 
 {
-      "id": 2,
-      "nome": "teste 2",
-      "cargo": "teste 2"
+      "nome": "Fulano 2",
+      "email": "fulano56@email.com",
+      "telefone": "84111111115",
+      "cpf":"111.111.111-15",
+      "endereco": "Rua 1, bairro 1, cidade 1",
+      "data_nascimento": "1991-01-01",
+      "senha":"11111112",
+      "status": "ativo"
 }
 
 ###
 
 ### Deletar usuario
 
-DELETE  http://localhost:8080/api/usuario/1
+DELETE  http://localhost:8080/api/usuario/2
 Accept: application/json
 
 ###
@@ -30,10 +35,21 @@ Accept: application/json
 PUT  http://localhost:8080/api/usuario/2
 Content-Type: application/json
 
-{
-      "id": 2,
-      "nome": "teste 9",
-      "cargo": "teste 9"
+{     
+    "nome": "Fulano 2 editado",
+    "email": "fulano2editado@email.com",
+    "telefone": "84111111112",
+    "cpf": "111.111.111-12",
+    "endereco": "Rua 2, bairro 2, cidade 2",
+    "data_nascimento": "1991-01-01T00:00:00.000Z",
+    "senha": "22222222",
+    "status": "ativo"
 }
+
+###
+
+### Deletar todos usuarios
+
+DELETE  http://localhost:8080/api/usuario
 
 ###
