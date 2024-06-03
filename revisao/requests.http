@@ -12,9 +12,9 @@ Content-Type: application/json
 
 {
       "nome": "Fulano 2",
-      "email": "fulano56@email.com",
+      "email": "fulano2@email.com",
       "telefone": "84111111115",
-      "cpf":"111.111.111-15",
+      "cpf":"111.111.111-11",
       "endereco": "Rua 1, bairro 1, cidade 1",
       "data_nascimento": "1991-01-01",
       "senha":"11111112",

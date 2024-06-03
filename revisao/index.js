@@ -6,7 +6,6 @@ const rota = require('./routes');
 
 app.use('/api', rota);
 
-
 app.listen(8080, async () =>{
     console.log('Servidor rodando na porta 3000!');
     try {

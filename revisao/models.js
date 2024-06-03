@@ -90,6 +90,12 @@ const Usuario = sequelize.define('Usuario', {
     senha: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate:{
+            len:{
+                args:[8,15],
+                msg: "A senha deve ter no minimo 8 e no maximo 15 caractereres"
+            }
+        }
     },
     status: {
         type: DataTypes.ENUM('ativo', 'inativo'),
@@ -111,7 +117,10 @@ const Usuario = sequelize.define('Usuario', {
             }
         },
         beforeUpdate: async (usuario) => {
-            if (usuario.senha) {
+            if (usuario.changed('senha')) {
+                if (usuario.senha.length < 8 || usuario.senha.length > 15) {
+                    throw new Error('A senha deve ter no mínimo 8 e no máximo 15 caracteres');
+                }
                 const salt = await bcrypt.genSalt(10);
                 usuario.senha = await bcrypt.hash(usuario.senha, salt);
             }
