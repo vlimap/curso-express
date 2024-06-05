@@ -101,6 +101,10 @@ const Usuario = sequelize.define('Usuario', {
                 msg: "Valor invalido!"
             }
         }
+    },
+    foto_perfil: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 }, {
     hooks: {

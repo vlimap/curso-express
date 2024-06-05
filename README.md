@@ -9,7 +9,7 @@ Para melhorar sua experiência de desenvolvimento, recomendamos a instalação d
 
 - **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint):** Linter para JavaScript e TypeScript.
 - **[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode):** Formatador de código para uma aparência consistente.
-- **[SQLite](https://marketplace.visualstudio.com/items?itemName=alexcvzz.vscode-sqlite):** Extensão para explorar e gerenciar bancos de dados SQLite.
+- **[SQLiteView](https://marketplace.visualstudio.com/items?itemName=alexcvzz.vscode-sqlite):** Extensão para explorar e gerenciar bancos de dados SQLite.
 - **[Swagger Viewer](https://marketplace.visualstudio.com/items?itemName=Arjun.swagger-viewer):** Extensão para visualizar arquivos Swagger.
 - **[REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client):** Permite fazer requisições HTTP diretamente do VSCode.
 - **[Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense):** Autocompletar para caminhos de arquivos.
