@@ -48,7 +48,7 @@ curso-express
 ## Como Executar o Projeto
 1. Clone o repositório.
    ```sh
-   git clone https://github.com/SeuUsuario/curso-express-revisao.git
+   git clone https://github.com/vlimap/curso-express.git
    ```
 2. Navegue até o diretório do projeto.
    ```sh
