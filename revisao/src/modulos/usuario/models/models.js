@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const moment = require('moment-timezone');
-const sequelize = require('./configBD');
+const sequelize = require('../../../config/configBD');
 const bcrypt = require('bcrypt');
 
 const Usuario = sequelize.define('Usuario', {

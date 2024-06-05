@@ -1,12 +1,12 @@
 const express = require('express');
 const app = express();
-const sequelize = require('./configBD');
-const rota = require('./routes');
+const sequelize = require('./config/configBD');
+const rota = require('./modulos/usuario/routes/routes');
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const path = require('path');
 
-const swaggerDocument = YAML.load(path.join(__dirname, 'swagger.yaml'));
+const swaggerDocument = YAML.load(path.join(__dirname, 'modulos', 'usuario', 'swagger', 'swagger.yaml'));
 
 // Rotas da aplicação
 app.use('/api', rota);

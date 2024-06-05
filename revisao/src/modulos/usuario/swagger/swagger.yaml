@@ -153,10 +153,6 @@ components:
         endereco:
           type: string
           example: rua tal, de tal, 123
-        data_cadastro:
-          type: string
-          format: date-time
-          example: 1990-12-31T23:59:60
         data_nascimento:
           type: string
           format: date
@@ -188,10 +184,6 @@ components:
         endereco:
           type: string
           example: "rua tal, de tal, 123"
-        data_cadastro:
-          type: string
-          format: date-time
-          example: "1990-12-31T23:59:60"
         data_nascimento:
           type: string
           format: date

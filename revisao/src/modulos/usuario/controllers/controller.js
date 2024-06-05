@@ -1,5 +1,5 @@
-const sequelize = require('./configBD');
-const Usuario = require('./models')
+const sequelize = require('../../../config/configBD');
+const Usuario = require('../models/models')
 
 // Mostrar todos os usuarios
 exports.mostrarUsuarios = async (requisicao, resposta) => {

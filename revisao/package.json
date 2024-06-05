@@ -1,15 +1,21 @@
 {
   "name": "revisao",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Projeto de revisão utilizando Express, Sequelize e Swagger",
+  "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "express",
+    "sequelize",
+    "swagger",
+    "api"
+  ],
+  "author": "Fulano",
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "express": "^4.19.2",

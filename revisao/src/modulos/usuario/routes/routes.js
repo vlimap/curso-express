@@ -4,9 +4,9 @@ const { mostrarUsuarios,
     cadastrarUsuario, 
     editarUsuario,
     deletarUsuarioPorID,
-    deletarUsuarios } = require('./controller');
+    deletarUsuarios } = require('../controllers/controller');
 const rota = express.Router();
-const Usuario = require('./models');
+const Usuario = require('../models/models');
 
 
 rota.use(express.json());
