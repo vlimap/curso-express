@@ -7,7 +7,7 @@ exports.mostrarUsuarios = async (requisicao, resposta) => {
         const usuarios = await Usuario.findAll();
         resposta.status(200).json(usuarios);
     } catch (error) {
-        resposta.status(500).json({error:'erro ao retornar os dados'});
+        resposta.status(500).json({error:'erro ao retornar os dados',  detalhes: error.message});
     }
 };
 
@@ -21,7 +21,7 @@ exports.buscarPorId =  async (requisicao, resposta) => {
         resposta.status(200).json(usuario);
 
     } catch (error) {
-        resposta.status(500).json({error:'Erro ao buscar usuario!'});
+        resposta.status(500).json({error:'Erro ao buscar usuario!',  detalhes: error.message});
     }
 };
 

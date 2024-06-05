@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Documentação  API de Gerenciamento de usuarios
+  title: Documentação API de Gerenciamento de Usuários
   description: |-
     A API de Gerenciamento de Pessoas é uma interface de programação de aplicativos 
     RESTful projetada para gerenciar informações de indivíduos em um sistema. 
@@ -9,50 +9,127 @@ info:
     A API é construída utilizando práticas modernas de desenvolvimento web, garantindo 
     escalabilidade, segurança e facilidade de manutenção.
   version: 1.0.0
-license:
+  license:
     name: MIT
     url: https://opensource.org/license/mit
 servers:
-  - name: Localhost
   - url: http://localhost:8080
+    description: Localhost
 tags:
   - name: Usuarios
-    description: API de gerenciamento de usuarios
+    description: API de gerenciamento de usuários
 paths:
   /api/usuario:
     get:
       tags:
         - Usuarios
-      summary: Listar todos os usuarios
+      summary: Listar todos os usuários
       responses:
         '200':
-          description: Listar todos os usuarios no banco de dados
+          description: Lista todos os usuários no banco de dados
           content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuario'
+        '500':
+          description: Erro ao listar usuários
+    post:
+      tags:
+        - Usuarios
+      summary: Cadastrar um usuário
+      description: Adiciona um novo usuário ao banco de dados
+      requestBody:
+        required: true
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioInput'
+      responses:
+        '201':
+          description: Usuário criado com sucesso!
+          content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Usuario'
         '500':
-          description: Erro ao listar usuarios
-    post:
+          description: Erro ao cadastrar usuário!
+    delete:
       tags:
         - Usuarios
-      summary: Cadastrar um usuario
-      description: Adicionar um novo usuario ao banco
-      requestBody:
-        required: true
-        content: 
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UsuarioInput'
+      summary: Deletar todos os usuários
       responses:
-        '201':
-          description: Usuario criado com sucesso!
+        '200':
+          description: Todos os usuários deletados com sucesso
+        '500':
+          description: Erro ao deletar usuários
+  /api/usuario/{id}:
+    get:
+      tags:
+        - Usuarios
+      summary: Buscar um usuário pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Usuário encontrado
           content:
             application/json:
-                schema:
-                  $ref: '#/components/schemas/Usuario'
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        '404':
+          description: Usuário não encontrado
         '500':
-          description: Erro ao cadastrar usuario!
+          description: Erro ao buscar usuário
+    put:
+      tags:
+        - Usuarios
+      summary: Atualizar um usuário pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsuarioInput'
+      responses:
+        '200':
+          description: Usuário atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        '404':
+          description: Usuário não encontrado
+        '500':
+          description: Erro ao atualizar usuário
+    delete:
+      tags:
+        - Usuarios
+      summary: Deletar um usuário pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Usuário deletado com sucesso
+        '404':
+          description: Usuário não encontrado
+        '500':
+          description: Erro ao deletar usuário
 components:
   schemas:
     Usuario:
@@ -79,11 +156,11 @@ components:
         data_cadastro:
           type: string
           format: date-time
-          example: 1990-12-31T23:59:60 
+          example: 1990-12-31T23:59:60
         data_nascimento:
           type: string
           format: date
-          example: 1990-12-31 
+          example: 1990-12-31
         senha:
           type: string
           example: senha123
@@ -92,13 +169,10 @@ components:
           enum:
             - ativo
             - inativo
-          example: ativo  
+          example: ativo
     UsuarioInput:
       type: object
       properties:
-        id:
-          type: integer
-          example: 1
         nome:
           type: string
           example: "Fulano"
@@ -117,11 +191,11 @@ components:
         data_cadastro:
           type: string
           format: date-time
-          example: "1990-12-31T23:59:60 "
+          example: "1990-12-31T23:59:60"
         data_nascimento:
           type: string
           format: date
-          example: "1990-12-31 "
+          example: "1990-12-31"
         senha:
           type: string
           example: "senha123"

@@ -23,3 +23,4 @@ app.listen(8080, async () =>{
         console.error('Erro ao sincronizar o modelo de banco de dados',error)
     }
 });
+

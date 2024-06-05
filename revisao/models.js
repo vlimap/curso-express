@@ -53,7 +53,7 @@ const Usuario = sequelize.define('Usuario', {
         },
         validate: {
             is: {
-                args: [/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/],
+                args: [/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/],//123.456.789-12
                 msg: 'CPF inválido!'
             }
         }
@@ -83,19 +83,13 @@ const Usuario = sequelize.define('Usuario', {
             },
             isBefore: {
                 args: [moment().tz('America/Recife').format('YYYY-MM-DD')],
-                msg: 'A data é permitido data de nascimento apos a data atual'
+                msg: 'Não é permitido data de nascimento apos a data atual'
             }
         }
     },
     senha: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate:{
-            len:{
-                args:[8,15],
-                msg: "A senha deve ter no minimo 8 e no maximo 15 caractereres"
-            }
-        }
     },
     status: {
         type: DataTypes.ENUM('ativo', 'inativo'),
@@ -112,6 +106,9 @@ const Usuario = sequelize.define('Usuario', {
     hooks: {
         beforeCreate: async (usuario) => {
             if (usuario.senha) {
+                if (usuario.senha.length < 8 || usuario.senha.length > 15) {
+                    throw new Error('A senha deve ter no mínimo 8 e no máximo 15 caracteres');
+                }
                 const salt = await bcrypt.genSalt(10);
                 usuario.senha = await bcrypt.hash(usuario.senha, salt);
             }
@@ -129,7 +126,7 @@ const Usuario = sequelize.define('Usuario', {
     sequelize,
     modelName: 'Usuario',
     tableName: 'Usuario',
-    timestamps: false 
+    timestamps: false // Cria coluna createdAt updateAt
 });
 
 module.exports = Usuario;
