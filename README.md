@@ -1,7 +1,7 @@
 # Curso Express
 
 ## Descrição Geral
-Este projeto é uma aplicação backend desenvolvida com Node.js e Express, com o objetivo de servir como material didático para um curso de revisão sobre Express. A aplicação inclui uma configuração de banco de dados SQLite, módulos organizados para gerenciar diferentes aspectos do sistema, e integração com Swagger para documentação de API.
+Este projeto é uma aplicação backend desenvolvida com Node.js e Express, com o objetivo de servir como material didático para um curso sobre Express. A aplicação inclui uma configuração de banco de dados SQLite, módulos organizados para gerenciar diferentes aspectos do sistema, e integração com Swagger para documentação de API.
 
 ## Estrutura do Projeto
 ```
