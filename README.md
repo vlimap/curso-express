@@ -3,6 +3,18 @@
 ## Descrição Geral
 Este projeto é uma aplicação backend desenvolvida com Node.js e Express, com o objetivo de servir como material didático para um curso sobre Express. A aplicação inclui uma configuração de banco de dados SQLite, módulos organizados para gerenciar diferentes aspectos do sistema, e integração com Swagger para documentação de API.
 
+# Extensões Recomendadas para VSCode
+
+Para melhorar sua experiência de desenvolvimento, recomendamos a instalação das seguintes extensões no Visual Studio Code:
+
+- **[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint):** Linter para JavaScript e TypeScript.
+- **[Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode):** Formatador de código para uma aparência consistente.
+- **[SQLite](https://marketplace.visualstudio.com/items?itemName=alexcvzz.vscode-sqlite):** Extensão para explorar e gerenciar bancos de dados SQLite.
+- **[Swagger Viewer](https://marketplace.visualstudio.com/items?itemName=Arjun.swagger-viewer):** Extensão para visualizar arquivos Swagger.
+- **[REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client):** Permite fazer requisições HTTP diretamente do VSCode.
+- **[Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense):** Autocompletar para caminhos de arquivos.
+- **[Nodemon](https://marketplace.visualstudio.com/items?itemName=kuscamara.nodemon):** Executa automaticamente o servidor ao salvar alterações.
+
 ## Estrutura do Projeto
 ```
 curso-express
