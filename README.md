@@ -72,6 +72,19 @@ curso-express
 
 **Back-end:** Node, Express
 
+## Referências
+
+- [Documentação Express](https://expressjs.com/pt-br/)
+- [Documentação bcrypt](https://www.npmjs.com/package/bcrypt)
+- [Documentação moment-timezone](https://momentjs.com/timezone/)
+- [Documentação nodemon](https://www.npmjs.com/package/nodemon)
+- [Documentação Sequelize](https://sequelize.org/)
+- [Documentação Sequelize CLI](https://github.com/sequelize/cli)
+- [Documentação sqlite3](https://www.npmjs.com/package/sqlite3)
+- [Documentação swagger-jsdoc](https://www.npmjs.com/package/swagger-jsdoc)
+- [Documentação swagger-ui-express](https://www.npmjs.com/package/swagger-ui-express)
+- [Documentação YAMLJS](https://www.npmjs.com/package/yamljs)
+
 ## Licença
 Este projeto está licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](./LICENSE) para obter mais informações.
 
