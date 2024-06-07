@@ -33,8 +33,8 @@ const tamanho_arquivo ={
 
 const upload = multer({ 
     storage: storage,
-    filtro: filtro,
-    tamanho_arquivo: tamanho_arquivo
+    fileFilter: filtro,
+    fileSize: tamanho_arquivo
 });
 
 module.exports = upload;
