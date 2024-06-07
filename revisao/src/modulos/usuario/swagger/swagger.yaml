@@ -43,9 +43,41 @@ paths:
       requestBody:
         required: true
         content: 
-          application/json:
+          multipart/form-data:
             schema:
-              $ref: '#/components/schemas/UsuarioInput'
+              type: object
+              properties:
+                nome:
+                  type: string
+                  example: Fulano
+                email:
+                  type: string
+                  example: fulano@email.com
+                telefone:
+                  type: string
+                  example: 84999999999
+                cpf:
+                  type: string
+                  example: 123.456.789-12
+                endereco:
+                  type: string
+                  example: rua tal, de tal, 123
+                data_nascimento:
+                  type: string
+                  format: date
+                  example: 1990-12-31
+                senha:
+                  type: string
+                  example: senha123
+                status:
+                  type: string
+                  enum:
+                    - ativo
+                    - inativo
+                  example: ativo
+                foto_perfil:
+                  type: string
+                  format: binary
       responses:
         '201':
           description: Usuário criado com sucesso!
@@ -99,9 +131,41 @@ paths:
       requestBody:
         required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
-              $ref: '#/components/schemas/UsuarioInput'
+              type: object
+              properties:
+                nome:
+                  type: string
+                  example: Fulano
+                email:
+                  type: string
+                  example: fulano@email.com
+                telefone:
+                  type: string
+                  example: 84999999999
+                cpf:
+                  type: string
+                  example: 123.456.789-12
+                endereco:
+                  type: string
+                  example: rua tal, de tal, 123
+                data_nascimento:
+                  type: string
+                  format: date
+                  example: 1990-12-31
+                senha:
+                  type: string
+                  example: senha123
+                status:
+                  type: string
+                  enum:
+                    - ativo
+                    - inativo
+                  example: ativo
+                foto_perfil:
+                  type: string
+                  format: binary
       responses:
         '200':
           description: Usuário atualizado com sucesso
@@ -166,34 +230,32 @@ components:
             - ativo
             - inativo
           example: ativo
+        foto_perfil:
+          type: string
+          format: binary
     UsuarioInput:
       type: object
       properties:
         nome:
           type: string
-          example: "Fulano"
         email:
           type: string
-          example: "fulano@email.com"
         telefone:
           type: string
-          example: "84999999999"
         cpf:
           type: string
-          example: "123.456.789-12"
         endereco:
           type: string
-          example: "rua tal, de tal, 123"
         data_nascimento:
           type: string
           format: date
-          example: "1990-12-31"
         senha:
           type: string
-          example: "senha123"
         status:
           type: string
           enum:
             - ativo
             - inativo
-          example: "ativo"
+        foto_perfil:
+          type: string
+          format: binary

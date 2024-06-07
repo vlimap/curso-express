@@ -104,7 +104,15 @@ const Usuario = sequelize.define('Usuario', {
     },
     foto_perfil: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: true,
+        defaultValue: "../../upload/default.webp",
+        validate:{
+            isPathValid(value){
+                if( value && !/\.(jpg|jpeg|png|svg|gif|webp)$/i.test(value)){
+                    throw  Error('Formato de imagem invalido');
+                }
+            }
+        }
     }
 }, {
     hooks: {
