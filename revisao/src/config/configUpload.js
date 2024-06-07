@@ -15,6 +15,26 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage: storage });
+const filtro = (requisicao, file, callback) =>{
+    const tipo_arquivo = /jpg|jpeg|png|gif|webp/;
+    const mimetype = tipo_arquivo.test(file.mimetype);
+    const extensao = tipo_arquivo.test(path.extname(file.originalname).toLowerCase());
+    if(mimetype && extensao){
+        return callback(null, true);
+    }else{
+        callback(new Error('Formato de arquivo invalido'));
+    }
+};
+
+const tamanho_arquivo ={
+    fileSize: 5 * 1024 * 1024, // 5mb
+    files: 1
+};
+
+const upload = multer({ 
+    storage: storage,
+    filtro: filtro,
+    tamanho_arquivo: tamanho_arquivo
+});
 
 module.exports = upload;

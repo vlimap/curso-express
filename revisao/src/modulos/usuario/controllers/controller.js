@@ -29,9 +29,6 @@ exports.buscarPorId = async (requisicao, resposta) => {
 exports.cadastrarUsuario = async (requisicao, resposta) => {
     try {
         const dadosUsuario = requisicao.body;
-        if (requisicao.file) {
-            dadosUsuario.foto_perfil = `/modulos/usuario/uploads/${requisicao.file.filename}`;
-        }
         const novoUsuario = await Usuario.create(dadosUsuario);
         resposta.status(201).json(novoUsuario);
     } catch (error) {
