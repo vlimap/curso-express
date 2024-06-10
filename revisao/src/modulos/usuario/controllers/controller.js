@@ -1,6 +1,16 @@
 const sequelize = require('../../../config/configBD');
 const Usuario = require('../models/models');
+const upload = require('../../../config/configUpload');
 const path = require('path');
+const fs = require('fs');
+
+// Excluir a imagem
+const excluir_imagem = (caminhoImagem) =>{
+    const caminhoCompleto = path.join(__dirname,'../../../', caminhoImagem)
+    if (caminhoImagem && fs.existsSync(caminhoCompleto)){
+        fs.unlinkSync(caminhoCompleto);
+    }
+};
 
 // Mostrar todos os usuarios
 exports.mostrarUsuarios = async (requisicao, resposta) => {
@@ -26,18 +36,36 @@ exports.buscarPorId = async (requisicao, resposta) => {
 };
 
 // Cadastrar usuarios
-exports.cadastrarUsuario = async (requisicao, resposta) => {
-    try {
-        const dadosUsuario = requisicao.body;
-        if (requisicao.file) {
-            // encontrem uma solução (;
+// A gente chama isso de middleware, e de forma sequencial
+// Primeiro verifica a imagem depois os dados do usuario
+// Dentro de um array.
+exports.cadastrarUsuario = [
+    upload.single('foto_perfil'), // Primeiro middleware para processar o upload do arquivo
+    async (requisicao, resposta) => {
+        const transacao = await sequelize.transaction(); // Inicia a transação
+
+        try {
+            const dadosUsuario = requisicao.body;
+            if (requisicao.file) {
+                dadosUsuario.foto_perfil = requisicao.file.filename; // Adiciona o nome do arquivo ao objeto dadosUsuario
+            }
+
+            const novoUsuario = await Usuario.create(dadosUsuario, { transaction: transacao }); // Tenta criar o usuário dentro da transação
+
+             // Commit da transação se a criação do usuário foi bem-sucedida
+            resposta.status(201).json(novoUsuario);
+        } catch (error) {
+            await transacao.rollback(); // Rollback da transação em caso de erro
+
+            if (requisicao.file) {
+                excluir_imagem(`/modulos/usuario/upload/${requisicao.file.filename}`); // Exclui a imagem se houver erro
+            }
+
+            resposta.status(500).json({ error: 'Erro ao criar um novo usuario', detalhes: error.message });
         }
-        const novoUsuario = await Usuario.create(dadosUsuario);
-        resposta.status(201).json(novoUsuario);
-    } catch (error) {
-        resposta.status(500).json({ error: 'Erro ao criar um novo usuario', detalhes: error.message });
     }
-};
+];
+
 
 // Editar usuario
 exports.editarUsuario = async (requisicao, resposta) => {

@@ -18,13 +18,13 @@ rota.get('/usuario', mostrarUsuarios)
 rota.get('/usuario/:id', buscarPorId)
 
 // rota para editar usuario por id
-rota.put('/usuario/:id', upload.single('foto_perfil'),  editarUsuario)
+rota.put('/usuario/:id',  editarUsuario)
 
 // rota para deletar usuario por id
 rota.delete('/usuario/:id', deletarUsuarioPorID)
 
 // rota para cadastrar usuario
-rota.post('/usuario',upload.single('foto_perfil'), cadastrarUsuario)
+rota.post('/usuario', cadastrarUsuario)
 
 // rota para deletar todos os usuarios
 rota.delete('/usuario', deletarUsuarios)

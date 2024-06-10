@@ -1,15 +1,19 @@
 const express = require('express');
 const app = express();
 const sequelize = require('./config/configBD');
-const rota = require('./modulos/usuario/routes/routes');
+const rotaUsuario = require('./modulos/usuario/routes/routes');
+const rotaAdministrador = require('./modulos/usuario/routes/routes');
+
 const swaggerUi = require('swagger-ui-express');
+
 const YAML = require('yamljs');
 const path = require('path');
 
 const swaggerDocument = YAML.load(path.join(__dirname, 'modulos', 'usuario', 'swagger', 'swagger.yaml'));
 
 // Rotas da aplicação
-app.use('/api', rota);
+app.use('/api', rotaUsuario);
+app.use('/api', rotaAdministrador);
 
 // Rota de documentação da API
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
