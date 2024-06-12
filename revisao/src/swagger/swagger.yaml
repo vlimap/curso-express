@@ -1,11 +1,11 @@
 openapi: 3.0.3
 info:
-  title: Documentação API de Gerenciamento de Usuários
+  title: Documentação API de Gerenciamento de Usuários e Administradores
   description: |-
     A API de Gerenciamento de Pessoas é uma interface de programação de aplicativos 
-    RESTful projetada para gerenciar informações de indivíduos em um sistema. 
+    RESTful projetada para gerenciar informações de indivíduos e administradores em um sistema. 
     Ela fornece um conjunto completo de operações CRUD (Criar, Ler, Atualizar e Deletar) 
-    que permitem interagir com os dados de pessoas de maneira eficiente e segura. 
+    que permitem interagir com os dados de pessoas e administradores de maneira eficiente e segura. 
     A API é construída utilizando práticas modernas de desenvolvimento web, garantindo 
     escalabilidade, segurança e facilidade de manutenção.
   version: 1.0.0
@@ -18,6 +18,8 @@ servers:
 tags:
   - name: Usuarios
     description: API de gerenciamento de usuários
+  - name: Administradores
+    description: API de gerenciamento de administradores
 paths:
   /api/usuario:
     get:
@@ -45,39 +47,7 @@ paths:
         content: 
           multipart/form-data:
             schema:
-              type: object
-              properties:
-                nome:
-                  type: string
-                  example: Fulano
-                email:
-                  type: string
-                  example: fulano@email.com
-                telefone:
-                  type: string
-                  example: 84999999999
-                cpf:
-                  type: string
-                  example: 123.456.789-12
-                endereco:
-                  type: string
-                  example: rua tal, de tal, 123
-                data_nascimento:
-                  type: string
-                  format: date
-                  example: 1990-12-31
-                senha:
-                  type: string
-                  example: senha123
-                status:
-                  type: string
-                  enum:
-                    - ativo
-                    - inativo
-                  example: ativo
-                foto_perfil:
-                  type: string
-                  format: binary
+              $ref: '#/components/schemas/UsuarioInput'
       responses:
         '201':
           description: Usuário criado com sucesso!
@@ -133,39 +103,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              type: object
-              properties:
-                nome:
-                  type: string
-                  example: Fulano
-                email:
-                  type: string
-                  example: fulano@email.com
-                telefone:
-                  type: string
-                  example: 84999999999
-                cpf:
-                  type: string
-                  example: 123.456.789-12
-                endereco:
-                  type: string
-                  example: rua tal, de tal, 123
-                data_nascimento:
-                  type: string
-                  format: date
-                  example: 1990-12-31
-                senha:
-                  type: string
-                  example: senha123
-                status:
-                  type: string
-                  enum:
-                    - ativo
-                    - inativo
-                  example: ativo
-                foto_perfil:
-                  type: string
-                  format: binary
+              $ref: '#/components/schemas/UsuarioInput'
       responses:
         '200':
           description: Usuário atualizado com sucesso
@@ -194,6 +132,119 @@ paths:
           description: Usuário não encontrado
         '500':
           description: Erro ao deletar usuário
+
+  /api/administrador:
+    get:
+      tags:
+        - Administradores
+      summary: Listar todos os administradores
+      responses:
+        '200':
+          description: Lista todos os administradores no banco de dados
+          content: 
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Administrador'
+        '500':
+          description: Erro ao listar administradores
+    post:
+      tags:
+        - Administradores
+      summary: Cadastrar um administrador
+      description: Adiciona um novo administrador ao banco de dados
+      requestBody:
+        required: true
+        content: 
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdministradorInput'
+      responses:
+        '201':
+          description: Administrador criado com sucesso!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Administrador'
+        '500':
+          description: Erro ao cadastrar administrador!
+    delete:
+      tags:
+        - Administradores
+      summary: Deletar todos os administradores
+      responses:
+        '200':
+          description: Todos os administradores deletados com sucesso
+        '500':
+          description: Erro ao deletar administradores
+  /api/administrador/{id}:
+    get:
+      tags:
+        - Administradores
+      summary: Buscar um administrador pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Administrador encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Administrador'
+        '404':
+          description: Administrador não encontrado
+        '500':
+          description: Erro ao buscar administrador
+    put:
+      tags:
+        - Administradores
+      summary: Atualizar um administrador pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AdministradorInput'
+      responses:
+        '200':
+          description: Administrador atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Administrador'
+        '404':
+          description: Administrador não encontrado
+        '500':
+          description: Erro ao atualizar administrador
+    delete:
+      tags:
+        - Administradores
+      summary: Deletar um administrador pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Administrador deletado com sucesso
+        '404':
+          description: Administrador não encontrado
+        '500':
+          description: Erro ao deletar administrador
+
 components:
   schemas:
     Usuario:
@@ -216,7 +267,7 @@ components:
           example: 123.456.789-12
         endereco:
           type: string
-          example: rua tal, de tal, 123
+          example: Rua Tal, 123
         data_nascimento:
           type: string
           format: date
@@ -234,6 +285,69 @@ components:
           type: string
           format: binary
     UsuarioInput:
+      type: object
+      properties:
+        nome:
+          type: string
+        email:
+          type: string
+        telefone:
+          type: string
+        cpf:
+          type: string
+        endereco:
+          type: string
+        data_nascimento:
+          type: string
+          format: date
+        senha:
+          type: string
+        status:
+          type: string
+          enum:
+            - ativo
+            - inativo
+        foto_perfil:
+          type: string
+          format: binary
+    Administrador:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        nome:
+          type: string
+          example: Administrador Fulano
+        email:
+          type: string
+          example: admin@fulano.com
+        telefone:
+          type: string
+          example: 84999999999
+        cpf:
+          type: string
+          example: 123.456.789-12
+        endereco:
+          type: string
+          example: Rua Tal, 123
+        data_nascimento:
+          type: string
+          format: date
+          example: 1985-05-15
+        senha:
+          type: string
+          example: admin123
+        status:
+          type: string
+          enum:
+            - ativo
+            - inativo
+          example: ativo
+        foto_perfil:
+          type: string
+          format: binary
+    AdministradorInput:
       type: object
       properties:
         nome:
