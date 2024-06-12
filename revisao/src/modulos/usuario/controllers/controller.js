@@ -53,7 +53,7 @@ exports.cadastrarUsuario = [ // middleware
             const novoUsuario = await Usuario.create(dadosUsuario, { transaction: transacao }); // Tenta criar o usuário dentro da transação
 
              // Commit da transação se a criação do usuário foi bem-sucedida
-            transacao.commit();
+            await transacao.commit();
             resposta.status(201).json(novoUsuario);
         } catch (error) {
             await transacao.rollback(); // Rollback da transação em caso de erro
@@ -67,20 +67,43 @@ exports.cadastrarUsuario = [ // middleware
     }
 ];
 
-// Editar usuario
-exports.editarUsuario = async (requisicao, resposta) => {
-    try {
-        const usuario = await Usuario.findByPk(requisicao.params.id);
-        if (!usuario) {
-            return resposta.status(404).json({ error: 'Usuario não encontrado' });
-        }
-        await usuario.update(requisicao.body);
-        resposta.status(200).json(usuario);
-    } catch (error) {
-        resposta.status(500).json({ error: 'Erro ao editar o usuario', detalhes: error.message });
-    }
-};
+// Editar usuário
+exports.editarUsuario = [
+    upload.single('foto_perfil'),
+    async (requisicao, resposta) => {
+        const transacao = await sequelize.transaction();
+        try {
+            const usuario = await Usuario.findByPk(requisicao.params.id); //localhost:8080/1
+            if (!usuario) {
+                return resposta.status(404).json({ error: 'Usuário não encontrado' });
+            }
+            const dadosUsuario = requisicao.body;
+            // Verifica se há uma nova imagem enviada
+            if (requisicao.file) {
+                // Se já existe uma imagem associada ao usuário, exclui-a
+                if (usuario.foto_perfil) {
+                    excluir_imagem(`/modulos/usuario/upload/${usuario.foto_perfil}`);
+                }
+                dadosUsuario.foto_perfil = requisicao.file.filename; // Adiciona o nome do novo arquivo ao objeto dadosUsuario
+            } else {
+                // Se não houver nova imagem, mantém a imagem existente
+                dadosUsuario.foto_perfil = usuario.foto_perfil;
+            }
 
+            await usuario.update(dadosUsuario, { transaction: transacao });
+            await transacao.commit();
+            resposta.status(200).json(usuario);
+        } catch (error) {
+            await transacao.rollback();
+
+            if (requisicao.file) {
+                excluirImagem(`/modulos/usuario/upload/${requisicao.file.filename}`);
+            }
+
+            resposta.status(500).json({ error: 'Erro ao editar o usuário', detalhes: error.message });
+        }
+    }
+];
 // Deletar usuario por id
 exports.deletarUsuarioPorID = async (requisicao, resposta) => {
     try {

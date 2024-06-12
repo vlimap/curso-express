@@ -9,7 +9,7 @@ const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs');
 const path = require('path');
 
-const swaggerDocument = YAML.load(path.join(__dirname, 'modulos', 'usuario', 'swagger', 'swagger.yaml'));
+const swaggerDocument = YAML.load(path.join(__dirname, 'swagger', 'swagger.yaml'));
 
 // Rotas da aplicação
 app.use('/api', rotaUsuario);
