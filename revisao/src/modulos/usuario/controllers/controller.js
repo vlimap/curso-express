@@ -39,7 +39,7 @@ exports.buscarPorId = async (requisicao, resposta) => {
 // A gente chama isso de middleware, e de forma sequencial
 // Primeiro verifica a imagem depois os dados do usuario
 // Dentro de um array.
-exports.cadastrarUsuario = [
+exports.cadastrarUsuario = [ // middleware
     upload.single('foto_perfil'), // Primeiro middleware para processar o upload do arquivo
     async (requisicao, resposta) => {
         const transacao = await sequelize.transaction(); // Inicia a transação
@@ -53,6 +53,7 @@ exports.cadastrarUsuario = [
             const novoUsuario = await Usuario.create(dadosUsuario, { transaction: transacao }); // Tenta criar o usuário dentro da transação
 
              // Commit da transação se a criação do usuário foi bem-sucedida
+            transacao.commit();
             resposta.status(201).json(novoUsuario);
         } catch (error) {
             await transacao.rollback(); // Rollback da transação em caso de erro
@@ -65,7 +66,6 @@ exports.cadastrarUsuario = [
         }
     }
 ];
-
 
 // Editar usuario
 exports.editarUsuario = async (requisicao, resposta) => {

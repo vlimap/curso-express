@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const sequelize = require('./config/configBD');
 const rotaUsuario = require('./modulos/usuario/routes/routes');
-const rotaAdministrador = require('./modulos/usuario/routes/routes');
+const rotaAdministrador = require('./modulos/administrador/routes/routes');
 
 const swaggerUi = require('swagger-ui-express');
 

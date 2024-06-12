@@ -6,7 +6,6 @@ const { mostrarUsuarios,
     deletarUsuarioPorID,
     deletarUsuarios } = require('../controllers/controller');
 const rota = express.Router();
-const upload = require('../../../config/configUpload'); // Atualize o caminho conforme necessário
 
 
 rota.use(express.json());
