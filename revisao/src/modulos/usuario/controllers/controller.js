@@ -3,6 +3,9 @@ const Usuario = require('../models/models');
 const upload = require('../../../config/configUpload');
 const path = require('path');
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const secret_key = process.env.SECRET_KEY;
 
 // Excluir a imagem
 const excluir_imagem = (caminhoImagem) => {
@@ -45,7 +48,14 @@ exports.cadastrarUsuario = [
             if (requisicao.file) {
                 dadosUsuario.foto_perfil = requisicao.file.filename;
             }
-
+            const apiKey = jwt.sign({
+                id: dadosUsuario.email //fulano@email.com
+                },
+                secret_key,
+                { expiresIn: '1y' }
+            );
+            dadosUsuario.api_key = apiKey
+ 
             const novoUsuario = await Usuario.create(dadosUsuario, { transaction: transacao });
             await transacao.commit();
             resposta.status(201).json(novoUsuario);

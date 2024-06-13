@@ -113,7 +113,17 @@ const Usuario = sequelize.define('Usuario', {
                 }
             }
         }
+    },
+    api_key:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate:{
+            notNull:{
+                msg: 'Erro ao gerar chave de API'
+            }
+        }
     }
+    
 }, {
     hooks: {
         beforeCreate: async (usuario) => {
