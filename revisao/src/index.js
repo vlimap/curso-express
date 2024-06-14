@@ -1,9 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const sequelize = require('./config/configBD');
 const rotaUsuario = require('./modulos/usuario/routes/routes');
 const rotaAdministrador = require('./modulos/administrador/routes/routes');
-
 const swaggerUi = require('swagger-ui-express');
 
 const YAML = require('yamljs');
@@ -14,7 +14,6 @@ const swaggerDocument = YAML.load(path.join(__dirname, 'swagger', 'swagger.yaml'
 // Rotas da aplicação
 app.use('/api', rotaUsuario);
 app.use('/api', rotaAdministrador);
-
 // Rota de documentação da API
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
