@@ -5,6 +5,8 @@ const path = require('path');
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const crypto = require('crypto')
+
 const secret_key = process.env.SECRET_KEY;
 
 // Função para excluir imagem
@@ -33,10 +35,9 @@ exports.login = async (req, res) => {
         const token = jwt.sign(
             { id: usuario.id, email: usuario.email },
             secret_key,
-            { expiresIn: '1y' }
+            { expiresIn: '1m' }
         );
-
-        console.log(`Token gerado: ${token}`);
+        
 
         res.json({ token });
     } catch (error) {
@@ -78,12 +79,6 @@ exports.cadastrarUsuario = [
             if (requisicao.file) {
                 dadosUsuario.foto_perfil = requisicao.file.filename;
             }
-            const apiKey = jwt.sign(
-                { id: dadosUsuario.email },
-                secret_key,
-                { expiresIn: '1y' }
-            );
-            dadosUsuario.api_key = apiKey;
 
             const novoUsuario = await Usuario.create(dadosUsuario, { transaction: transacao });
             await transacao.commit();
@@ -171,5 +166,3 @@ exports.deletarUsuarios = async (requisicao, resposta) => {
     }
 };
 
-// Log para verificar exportações
-console.log(exports.editarUsuario);
