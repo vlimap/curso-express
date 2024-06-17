@@ -59,7 +59,7 @@ exports.cadastrarAdministrador = [ // middleware
             await transacao.rollback(); // Rollback da transação em caso de erro
 
             if (requisicao.file) {
-                excluir_imagem(`/modulos/Administrador/upload/${requisicao.file.filename}`); // Exclui a imagem se houver erro
+                excluir_imagem(`/modulos/administrador/upload/${requisicao.file.filename}`); // Exclui a imagem se houver erro
             }
 
             resposta.status(500).json({ error: 'Erro ao criar um novo Administrador', detalhes: error.message });
