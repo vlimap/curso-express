@@ -136,6 +136,7 @@ const Usuario = sequelize.define('Usuario', {
             }
         }
     },
+   
     sequelize,
     modelName: 'Usuario',
     tableName: 'Usuario',

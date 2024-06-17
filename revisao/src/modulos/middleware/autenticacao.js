@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
 const secret_key = process.env.SECRET_KEY;
 
-const autenticar = (req, res, next) => {
+const autenticar = (req, res, next) => { //função anonima
     const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
+    const token = authHeader && authHeader.split(' ')[1]; // Bearer cvdfrtg45tx4rwq4xr3z
 
     if (token == null) {
         console.log('Token não fornecido');

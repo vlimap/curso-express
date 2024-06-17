@@ -5,12 +5,12 @@ const path = require('path');
 const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const crypto = require('crypto')
+
 
 const secret_key = process.env.SECRET_KEY;
 
 // Função para excluir imagem
-const excluir_imagem = (caminhoImagem) => {
+const excluir_imagem = (caminhoImagem) => {///modulos/
     const caminhoCompleto = path.join(__dirname, '../../../', caminhoImagem);
     if (caminhoImagem && fs.existsSync(caminhoCompleto)) {
         fs.unlinkSync(caminhoCompleto);
@@ -22,11 +22,11 @@ exports.login = async (req, res) => {
     const { email, senha } = req.body;
     try {
         console.log(`Tentativa de login com o email: ${email}`);
-        const usuario = await Usuario.findOne({ where: { email } });
-        if (!usuario) {
+        const usuario = await Usuario.findOne({ where: { email } });//fulano@email.com
+        if (!usuario) { //false
             return res.status(400).json({ error: 'Credenciais inválidas!' });
         }
-        const senhaValida = await bcrypt.compare(senha, usuario.senha);
+        const senhaValida = await bcrypt.compare(senha, usuario.senha);//12345
         if (!senhaValida) {
             return res.status(400).json({ error: 'Credenciais inválidas!' });
         }
@@ -34,10 +34,9 @@ exports.login = async (req, res) => {
         // Gerando token de login
         const token = jwt.sign(
             { id: usuario.id, email: usuario.email },
-            secret_key,
-            { expiresIn: '1m' }
+            secret_key,//12346ert345tvcenc 8324ynyr2cmx2r3
+            { expiresIn: '1h' }
         );
-        
 
         res.json({ token });
     } catch (error) {

@@ -148,3 +148,6 @@ dist
 
 # Banco de dados
 *.sqlite
+
+# Pasta upload
+upload/

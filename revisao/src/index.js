@@ -14,6 +14,7 @@ const swaggerDocument = YAML.load(path.join(__dirname, 'swagger', 'swagger.yaml'
 // Rotas da aplicação
 app.use('/api', rotaUsuario);
 app.use('/api', rotaAdministrador);
+
 // Rota de documentação da API
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
