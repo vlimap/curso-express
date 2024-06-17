@@ -10,7 +10,7 @@ const bcrypt = require('bcrypt');
 const secret_key = process.env.SECRET_KEY;
 
 // Função para excluir imagem
-const excluir_imagem = (caminhoImagem) => {///modulos/
+const excluir_imagem = (caminhoImagem) => {
     const caminhoCompleto = path.join(__dirname, '../../../', caminhoImagem);
     if (caminhoImagem && fs.existsSync(caminhoCompleto)) {
         fs.unlinkSync(caminhoCompleto);
@@ -34,7 +34,7 @@ exports.login = async (req, res) => {
         // Gerando token de login
         const token = jwt.sign(
             { id: usuario.id, email: usuario.email },
-            secret_key,//12346ert345tvcenc 8324ynyr2cmx2r3
+            secret_key,
             { expiresIn: '1m' }
         );
 
