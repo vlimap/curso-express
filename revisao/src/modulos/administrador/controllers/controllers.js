@@ -3,12 +3,43 @@ const Administrador = require('../models/models');
 const upload = require('../../../config/configUpload');
 const path = require('path');
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const secret_key = process.env.SECRET_KEY;
+
 
 // Excluir a imagem
 const excluir_imagem = (caminhoImagem) =>{
     const caminhoCompleto = path.join(__dirname,'../../../', caminhoImagem)
     if (caminhoImagem && fs.existsSync(caminhoCompleto)){
         fs.unlinkSync(caminhoCompleto);
+    }
+};
+
+// Login do usuário
+exports.login = async (req, res) => {
+    const { email, senha } = req.body;
+    try {
+        console.log(`Tentativa de login com o email: ${email}`);
+        const usuario = await Administrador.findOne({ where: { email } });//fulano@email.com
+        if (!usuario) { //false
+            return res.status(400).json({ error: 'Credenciais inválidas!' });
+        }
+        const senhaValida = await bcrypt.compare(senha, usuario.senha);//12345
+        if (!senhaValida) {
+            return res.status(400).json({ error: 'Credenciais inválidas!' });
+        }
+
+        // Gerando token de login
+        const token = jwt.sign(
+            { id: usuario.id, email: usuario.email },
+            secret_key,
+            { expiresIn: '1m' }
+        );
+
+        res.json({ token });
+    } catch (error) {
+        res.status(500).json({ error: "Erro no servidor", detalhes: error.message });
     }
 };
 

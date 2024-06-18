@@ -7,7 +7,15 @@ const path = require('path');
 
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        callback(null, path.join(__dirname, '../modulos/usuario/upload'));
+        let uploadDir;
+        if (req.path.startsWith('/administrador')) {// /administrador
+            uploadDir = path.join(__dirname, '../modulos/administrador/upload');
+        } else if (req.path.startsWith('/usuario')) {
+            uploadDir = path.join(__dirname, '../modulos/usuario/upload');
+        } else {
+            uploadDir = path.join(__dirname, '../uploads'); 
+        }
+        callback(null, uploadDir);
     },
     filename: function (req, file, callback) {
         const uniqueSuffix = uuidv4() + path.extname(file.originalname);

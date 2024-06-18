@@ -68,7 +68,7 @@ curso-express
 
 ## Stack utilizada
 
-**Front-end:** React, TailwindCSS ou React-bootstrap
+**Front-end:** React, TailwindCSS ou React-bootstrap e css
 
 **Back-end:** Node, Express
 

@@ -18,7 +18,7 @@ app.use('/api', rotaAdministrador);
 // Rota de documentação da API
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.listen(8080, async () =>{
+app.listen(3000, async () =>{
     console.log('Servidor rodando na porta 3000!');
     try {
         await sequelize.sync({force: false});

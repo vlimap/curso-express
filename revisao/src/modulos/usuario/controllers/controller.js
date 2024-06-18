@@ -6,7 +6,6 @@ const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
-
 const secret_key = process.env.SECRET_KEY;
 
 // Função para excluir imagem
