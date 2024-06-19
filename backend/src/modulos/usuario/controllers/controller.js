@@ -43,7 +43,6 @@ exports.login = async (req, res) => {
     }
 };
 
-
 // Mostrar todos os usuários
 exports.mostrarUsuarios = async (requisicao, resposta) => {
     try {
