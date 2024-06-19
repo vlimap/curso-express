@@ -1,5 +1,5 @@
 {
-  "name": "revisao",
+  "name": "backend",
   "version": "1.0.0",
   "description": "Projeto de revisão utilizando Express, Sequelize e Swagger",
   "main": "src/index.js",
