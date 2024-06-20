@@ -1,20 +1,27 @@
-import { Card, Button } from 'react-bootstrap';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Header from './components/Layout/Header';
+import Footer from './components/Layout/Footer';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+
 import './App.css';
 
 // componente
 function App() {
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
+    <Router>
+      <Header />
+      <main className='container mt-5'>
+        <Routes>
+           <Route exact path="/" element={ <HomePage /> } />
+           <Route path="/about" element={ <AboutPage />} />
+           <Route path="/contact" element={ <ContactPage />} />
+        </Routes>
+      </main>
+      <Footer />
+    </Router>
   );
 }
 
