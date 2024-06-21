@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className='bg-dark text-white'>
             <Container>
-                &copy; { new Date().getFullYear() } Todos os direitos reservados
+                &copy; { new Date().getFullYear() } Todos os direitos reservados.
             </Container>
         </footer>
     );

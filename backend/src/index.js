@@ -19,7 +19,7 @@ app.use('/api', rotaAdministrador);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(3001, async () =>{
-    console.log('Servidor rodando na porta 3000!');
+    console.log('Servidor rodando na porta 3001!');
     try {
         await sequelize.sync({force: false});
         console.log('Conexão estabelicida com o banco e sincronizado.'); 
