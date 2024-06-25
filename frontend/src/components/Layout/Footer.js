@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import './Footer.css'
 const Footer = () => {
     return (
-        <footer className='bg-dark text-white'>
+        <footer className='bg-dark text-white text-center'>
             <Container>
                 &copy; { new Date().getFullYear() } Todos os direitos reservados.
             </Container>

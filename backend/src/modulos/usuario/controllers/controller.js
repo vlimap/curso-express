@@ -85,6 +85,7 @@ exports.cadastrarUsuario = [
             if (requisicao.file) {
                 excluir_imagem(`/modulos/usuario/upload/${requisicao.file.filename}`);
             }
+            console.error('Erro ao cadastrar usuário:', error.message, error);
             resposta.status(500).json({ error: 'Erro ao criar um novo usuário', detalhes: error.message });
         }
     }

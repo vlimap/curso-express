@@ -5,6 +5,8 @@ const sequelize = require('./config/configBD');
 const rotaUsuario = require('./modulos/usuario/routes/routes');
 const rotaAdministrador = require('./modulos/administrador/routes/routes');
 const swaggerUi = require('swagger-ui-express');
+const cors = require('cors');
+app.use(cors()); 
 
 const YAML = require('yamljs');
 const path = require('path');
