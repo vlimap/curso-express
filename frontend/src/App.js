@@ -7,8 +7,9 @@ import HomePage from './pages/HomePage/HomePage';
 import AboutPage from './pages/AboutPage/AboutPage';
 import ContactPage from './pages/ContactPage/ContactPage';
 import CadastrarUsuario from './services/CadastrarUsuario'
-
+import LoginUsuario from './services/LoginUsuario';
 import './App.css';
+
 
 // componente
 function App() {
@@ -21,6 +22,7 @@ function App() {
            <Route path="/about" element={ <AboutPage />} />
            <Route path="/contact" element={ <ContactPage />} />
            <Route path="/cadastrar" element={ <CadastrarUsuario />} />
+           <Route path="/login" element={ <LoginUsuario />} />
         </Routes>
       </main>
       <Footer />

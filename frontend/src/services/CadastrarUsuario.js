@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Container, Row, Col, Alert, Form } from 'react-bootstrap';
 
-const CadastroUsuario = () =>{
+const CadastroUsuario = () => {
     // estado para armazenar usuarios
-    const [formData, setFormData ] = useState({
+    const [formData, setFormData] = useState({
         nome: '',
         email: '',
         telefone: '',
@@ -21,39 +21,40 @@ const CadastroUsuario = () =>{
     const [detalhesErro, setDetalhesErro] = useState();
 
     // Função para atualizar o estado quando o input do formulario
-    const atualizarForm = (estado) =>{
-        const {name, value } = estado.target;
+    const atualizarForm = (estado) => {
+        const { name, value } = estado.target;
         setFormData(
-            (prevFormData)=>
-            ({...prevFormData, [name]: value})
+            (prevFormData) =>
+                ({ ...prevFormData, [name]: value })
         )
     }
 
     // Função para atualizar o estado quando o foto perfil
-    const atualizarFile = (estado) =>{
+    const atualizarFile = (estado) => {
         setFormData(
             (prevFormData) =>
-            ({...prevFormData, foto_perfil: estado.target.files[0]
+            ({
+                ...prevFormData, foto_perfil: estado.target.files[0]
             })
         )
     };
 
 
-    const DadosEnvio = async (event) =>{
+    const DadosEnvio = async (event) => {
         event.preventDefault();
         // criando um objeto FormData para enviar os dados do formulario
         const data = new FormData();
         // Adiciona cada campo do formulario ao FormData
-        for(const key in formData){
+        for (const key in formData) {
             data.append(key, formData[key]);
         }
 
         try {
-            await axios.post('http://localhost:3001/api/usuario', 
-            data, {
-              headers:{
-                'Content-Type' : 'multipart/form-data'
-              },  
+            await axios.post('http://localhost:3001/api/usuario',
+                data, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
             });
             // Mostra a mensagem de sucesso
             setMensagem('Usuario cadastrado com sucesso');
@@ -61,12 +62,12 @@ const CadastroUsuario = () =>{
         } catch (error) {
             // Definindo a mensagem de erro ao cadastrar
             setMensagem('Erro ao cadastrar usuario');
-            if(error.response && error.response.data && error.response.data.detalhes){
+            if (error.response && error.response.data && error.response.data.detalhes) {
                 setDetalhesErro(error.response.data.detalhes);
-            }else if(error.request){
+            } else if (error.request) {
                 setDetalhesErro('Erro de rede:' + error.message);
                 console.log('Erro de rede:', error)
-            }else{
+            } else {
                 setDetalhesErro(error.message);
                 console.log('Erro:', error)
             }
@@ -77,15 +78,15 @@ const CadastroUsuario = () =>{
             <Row className='justify-content-md-center'>
                 <Col md='6'>
                     <h2>Cadastro de usuarios</h2>
-                    { mensagem && (
-                        <Alert variant={mensagem.includes('sucess') ? 'success': 'danger'}>
+                    {mensagem && (
+                        <Alert variant={mensagem.includes('sucess') ? 'success' : 'danger'}>
                             {mensagem}
                             {detalhesErro && (
                                 <div>
                                     <strong>Detalhes:</strong> {detalhesErro}
                                 </div>
                             )}
-                            
+
                         </Alert>
                     )}
                     <Form onSubmit={DadosEnvio}>
@@ -121,7 +122,7 @@ const CadastroUsuario = () =>{
                             <Form.Label htmlFor="foto_perfil">Foto perfil:</Form.Label>
                             <Form.Control type="file" id="foto_perfil" name="foto_perfil" onChange={atualizarFile}></Form.Control>
                         </Form.Group>
-                        <Button className="mt-3 mb-3"variant="primary" type="submit">Cadastrar</Button>
+                        <Button className="mt-3 mb-3" variant="primary" type="submit">Cadastrar</Button>
                     </Form>
                 </Col>
             </Row>
