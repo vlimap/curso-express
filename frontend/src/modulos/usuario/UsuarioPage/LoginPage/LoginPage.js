@@ -23,7 +23,7 @@ const Login = () => {
 
     return (
         <div>
-            <h1> Login de usaurio</h1>
+            <h1> Login de usuário</h1>
             {mensagem && (
                 <Alert variant={mensagem.includes('sucess') ? 'success' : 'danger'}>
                     {erro}
