@@ -14,7 +14,6 @@ const LoginUsuario = async (email, senha) => {
         throw new Error(error.response.data.error, 'Erro ao tentar fazer login');
     }
 };
-
 const LogoutUsuario = () => {
     localStorage.removeItem('token');
 };
@@ -22,7 +21,6 @@ const LogoutUsuario = () => {
 const getCurrentUser = () => {
     return localStorage.getItem('token');
 };
-
 export default {
     LoginUsuario,
     LogoutUsuario,
